@@ -8,5 +8,22 @@ output: 7 - 2 = 5
 */
 
 var maxMinusMin = function(n) {
+  let max = 0;
+  let min = n;
+  let digits = []
+  while (n) {
+    digits.push(n%10);
+    n = Math.floor(n / 10);
+  }
 
+  for (let i = 0; i < digits.length; i++){
+    if (digits[i] < min) {
+      min = digits[i];
+    }
+    if (digits[i] > max) {
+      max = digits[i];
+    }
+  }
+
+  return max - min;
 };

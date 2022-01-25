@@ -1,6 +1,6 @@
 
 /*
-The array cookies represent the number of cookies that each kid has. 
+The array cookies represent the number of cookies that each kid has.
 Given the array cookies and an integer extraCookies, determine whether there is a
 way to distribute the extraCookies among the kids in a way that kids get equal number of cookies.
 Example: input: cookies = [3, 5, 8] , extraCookies = 8
@@ -10,6 +10,23 @@ Example: input: cookies = [3, 5, 8] , extraCookies = 8
  */
 
  var canGetEqualCookies = function(cookies, extraCookies) {
-     
-    
+   let max = 0;
+   
+   for (let i = 0; i < cookies.length; i++) {
+     if (cookies[i] > max) {
+       max = cookies[i];
+     }
+   }
+
+   for (let i = 0; i < cookies.length; i++) {
+     if (cookies[i] < max) {
+       let temp = max - cookies[i];
+       extraCookies -= temp;
+     }
+     if (extraCookies < 0){
+       return false;
+     }
+   }
+
+   return extraCookies%cookies.length==0;
  };
