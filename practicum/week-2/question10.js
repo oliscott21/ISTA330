@@ -13,7 +13,7 @@ var maxMinusMin = function(n) {
   let digits = []
   while (n) {
     digits.push(n%10);
-    n = Math.floor(n / 10);
+    n = n / 10 | 0;
   }
 
   for (let i = 0; i < digits.length; i++){
