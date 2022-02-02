@@ -1,11 +1,11 @@
 /*
-Given two integer arrays input1 and input2, 
-and the integer d, return the d-count 
+Given two integer arrays input1 and input2,
+and the integer d, return the d-count
 between the two arrays.
 
-The d-count is defined as 
-the number of elements input1[i] such that 
-there is not any element input2[j] 
+The d-count is defined as
+the number of elements input1[i] such that
+there is not any element input2[j]
 where |input1[i]-input2[j]| <= d.
 
 Example:
@@ -14,5 +14,20 @@ output: 1
 */
 
 var d_count = function(input1, input2, d) {
+  let retVal = input1.length;
 
+  for (let i = 0; i < input1.length; i++) {
+    let bool = true;
+    for (let j = 0; j < input2.length; j++) {
+      if (input1[i]-input2[j] < d) {
+        bool = false;
+        break;
+      }
+    }
+    if (!bool) {
+      retVal -= 1;
+    }
+  }
+
+  return retVal;
 };
