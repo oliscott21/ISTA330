@@ -7,7 +7,7 @@
 </head>
 <body>
     <div id="question">
-        Using the array flowers below, 
+        Using the array flowers below,
         display the flowers. Use the div 'flowersDiv'.
         You should display the flowers in two rows,
         each row containing 4 flowers.
@@ -19,7 +19,7 @@
     </div>
     <script>
         /*
-           Using the array flowers below, 
+           Using the array flowers below,
            display the flowers. Use the div 'flowersDiv'.
            You should display the flowers in two rows,
            each row containing 4 flowers.
@@ -40,7 +40,7 @@
        let tulip = new Flower('Tulip', 'https://habahram.blob.core.windows.net/flowers/tulip.jpg');
        let rose = new Flower('Rose', 'https://habahram.blob.core.windows.net/flowers/rose.jpg');
        let waterlily = new Flower('Water lily', 'https://habahram.blob.core.windows.net/flowers/waterlily.jpg');
-       
+
        let flowers = [
              daffodil,
              cherryblossom,
@@ -51,6 +51,29 @@
              rose,
              waterlily
        ];
+
+       for (var i = 0; i < flowers.length; i++) {
+         var flower = document.createElement("img");
+         let width = screen.width;
+         flower.setAttribute("width", "25%");
+         flower.setAttribute("height", width/8);
+         flower.src = flowers[i].picture;
+         document.getElementById("flowersDiv").appendChild(flower);
+       }
+
+/*
+       for (var i = 0; i < 2; i++) {
+         const rowdiv = document.createElement("div");
+         rowdiv.setAttribute("id", "row");
+         for (var j = 0; j < 4; j++) {
+           var flower = document.createElement("img");
+           flower.src = flowers[i].picture;
+           document.getElementById("row").appendChild(flower);
+         }
+         document.getElementById("id").appendChild(rowdiv);
+       }
+      */
+
     </script>
 </body>
 </html>
