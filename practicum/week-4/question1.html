@@ -52,28 +52,44 @@
              waterlily
        ];
 
-       for (var i = 0; i < flowers.length; i++) {
-         var flower = document.createElement("img");
-         let width = screen.width;
-         flower.setAttribute("width", "25%");
-         flower.setAttribute("height", width/8);
-         flower.src = flowers[i].picture;
-         document.getElementById("flowersDiv").appendChild(flower);
-       }
-
 /*
+       var x = 0;
        for (var i = 0; i < 2; i++) {
-         const rowdiv = document.createElement("div");
-         rowdiv.setAttribute("id", "row");
+         var div = document.createElement("div");
          for (var j = 0; j < 4; j++) {
            var flower = document.createElement("img");
-           flower.src = flowers[i].picture;
-           document.getElementById("row").appendChild(flower);
-         }
-         document.getElementById("id").appendChild(rowdiv);
-       }
-      */
+           var title = document.createElement("p");
 
+           let width = screen.width;
+           flower.setAttribute("width", 200);
+           flower.setAttribute("height", width/9);
+           flower.src = flowers[x].picture;
+           title.innerText = flowers[x].name;
+           div.appendChild(flower);
+           div.appendChild(title);
+           x++;
+         }
+         div.setAttribute("style", "95%");
+         div.setAttribute("style", "float:left");
+         div.setAttribute("style", "display:block");
+         document.getElementById("flowersDiv").appendChild(div);
+       }
+       document.getElementById("flowersDiv").setAttribute("style", "float:left");
+*/
+
+      for (var i = 0; i < flowers.length; i++) {
+        var flower = document.createElement("img");
+        var title = document.createElement("p");
+        let width = screen.width;
+        flower.setAttribute("width", "25%");
+        flower.setAttribute("height", width/8);
+
+        flower.src = flowers[i].picture;
+        title.innerText = flowers[i].name;
+
+        document.getElementById("flowersDiv").appendChild(flower);
+        //document.getElementById("flowersDiv").appendChild(title);
+      }
     </script>
 </body>
 </html>

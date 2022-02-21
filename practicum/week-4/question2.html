@@ -61,7 +61,7 @@
         /*
            1. Display the flowers as per question 1.
            2. Add the following functionality to the page:
-              When users click on an image, the images should be 
+              When users click on an image, the images should be
               reorganized using the following rule:
               The flowers that has been clicked goes to the first position in
               the first row. The next position in the first row will
@@ -72,8 +72,8 @@
               then the flowers should be rearranged as:
 
          lily       rose           sunflower   tulip
-        waterlily   cherryblossom  daffodil    daisy 
-        
+        waterlily   cherryblossom  daffodil    daisy
+
         */
         class Flower {
             constructor(name, pictureName) {
@@ -100,6 +100,26 @@
             rose,
             waterlily
         ];
+
+        for (var i = 0; i < flowers.length; i++) {
+          var flower = document.createElement("img");
+          var title = document.createElement("p");
+          let width = screen.width;
+          flower.setAttribute("width", "25%");
+          flower.setAttribute("height", width/8);
+
+          flower.src = flowers[i].picture;
+          title.innerText = flowers[i].name;
+          flower.setAttribute("onclick", "rotate(flower[i].name)");
+
+          document.getElementById("flowersDiv").appendChild(flower);
+          //document.getElementById("flowersDiv").appendChild(title);
+        }
+
+        function rotate(t) {
+          console.log(t);
+        }
+
     </script>
 </body>
 
