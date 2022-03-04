@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
@@ -101,24 +102,78 @@
             waterlily
         ];
 
-        for (var i = 0; i < flowers.length; i++) {
-          var flower = document.createElement("img");
-          var title = document.createElement("p");
-          let width = screen.width;
-          flower.setAttribute("width", "25%");
-          flower.setAttribute("height", width/8);
+        let reorder = (flower) => {
+            let newOrder = [flower];
 
-          flower.src = flowers[i].picture;
-          title.innerText = flowers[i].name;
-          flower.setAttribute("onclick", "rotate(flower[i].name)");
+            for (let i = 0; i < flowers.length; i++) {
+              let min = i;
 
-          document.getElementById("flowersDiv").appendChild(flower);
-          //document.getElementById("flowersDiv").appendChild(title);
+              for (let j = i + 1; j < flowers.length; j++) {
+                if (flowers[j].name < flowers[min].name) {
+                  min = j;
+                }
+              }
+
+              if (min != i) {
+                [flowers[i],flowers[min]] = [flowers[min],flowers[i]];
+              }
+            }
+
+            let prev = [];
+            for (let i = 0; i < flowers.length; i++) {
+              if (flowers[i].name < flower.name) {
+                prev.push(flowers[i]);
+              } else if (flowers[i].name > flower.name) {
+                newOrder.push(flowers[i]);
+              } else {
+                continue;
+              }
+            }
+            flowers = newOrder.concat(prev);
+            for (let i = 0; i < flowers.length; i++) {
+
+              console.log(flowers[i].name)
+            }
         }
 
-        function rotate(t) {
-          console.log(t);
+        let displayFlowers = () => {
+          let div = document.querySelector('#flowersDiv');
+          for (let i = 0; i < 2; i++) {
+            let row = document.createElement('div');
+            row.setAttribute('class', 'row');
+            div.appendChild(row);
+            for (let j = 0; j < 4; j++) {
+              let col = document.createElement('div');
+              let flower = document.createElement('img');
+              let title = document.createElement('h5');
+              let index = i * 4 + j;
+
+              col.setAttribute('class', 'col');
+              col.style.paddingTop = '25px';
+              col.style.paddingLeft = '25px';
+              col.style.paddingRight = '25px';
+              col.style.width = '25%';
+              col.style.textAlign = 'center';
+              flower.style.width = '100%';
+              let width = screen.width/4;
+              flower.style.height = (width/1.5) + 'px';
+              flower.src = flowers[index].picture;
+              title.innerHTML = flowers[index].name;
+
+              flower.addEventListener('click', () => {
+                        div.innerHTML = ''; // clears the flowers from the page
+                        reorder(flowers[index]);
+                        displayFlowers();
+              });
+
+              col.appendChild(flower);
+              col.appendChild(title);
+              row.appendChild(col);
+            }
+          }
         }
+
+        displayFlowers();
 
     </script>
 </body>
